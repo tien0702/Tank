@@ -6,7 +6,9 @@
       "cannonName": "C1",
       "damage": 50,
       "hp": 500,
-      "speed": 2
+      "speed": 2,
+      "aspd": 1000,
+      "attackRange": 2
     },
     {
       "bulletName": "B1",
@@ -14,7 +16,9 @@
       "cannonName": "C2",
       "damage": 100,
       "hp": 700,
-      "speed": 2
+      "speed": 2,
+      "aspd": 1000,
+      "attackRange": 2
     }
   ]
 }

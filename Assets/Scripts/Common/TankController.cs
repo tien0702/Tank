@@ -11,7 +11,9 @@ public class TankInfo
     public string cannonName;
     public int damage;
     public int hp;
+    public int aspd;
     public float speed;
+    public float attackRange;
 }
 
 public abstract class TankController : MoveController, IHit

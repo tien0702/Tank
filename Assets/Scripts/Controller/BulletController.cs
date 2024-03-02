@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LTAUnityBase.Base.DesignPattern;
+using System;
+
 public interface IHit
 {
     void OnHit(float damage);
@@ -10,6 +12,7 @@ public interface IHit
 public class BulletController : MonoBehaviour
 {
     public TankController owner;
+    public Action OnHitTarget = null;
     public GameObject explosionPrefab;
     public string explosionName;
     public float lifeTime = 0;
@@ -33,6 +36,7 @@ public class BulletController : MonoBehaviour
             if (iHit != null)
             {
                 iHit.OnHit(owner.Info.damage);
+                OnHitTarget?.Invoke();
                 this.MoveToPool();
                 return;
             }
@@ -44,6 +48,7 @@ public class BulletController : MonoBehaviour
     void MoveToPool()
     {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+        OnHitTarget = null;
         PoolingObject.DestroyPooling<BulletController>(this);
     }
 }

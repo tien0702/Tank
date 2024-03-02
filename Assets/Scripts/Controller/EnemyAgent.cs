@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class EnemyAgent : Agent
 {
-    List<TankController> tanks;
+    List<Transform> targets;
+    List<Transform> obstacles;
 
     TankController tank;
+
+    bool canShoot = true;
 
     protected override void Awake()
     {
@@ -18,44 +22,41 @@ public class EnemyAgent : Agent
         tank = GetComponent<TankController>();
     }
 
-
     private void Start()
     {
-        tanks = GameObject.FindObjectsOfType<TankController>().ToList();
-        tanks.Remove(GetComponent<EnemyController>());
+        targets = GameObject.FindObjectsOfType<TankController>().ToList().Select(x => x.GetComponent<Transform>()).ToList();
+        targets.Remove(gameObject.transform);
+        obstacles = transform.parent.Find("Obstacles").GetComponentsInChildren<Transform>().ToList();
+        obstacles.Remove(transform.parent.Find("Obstacles"));
+
+        BehaviorParameters behaviors = GetComponent<BehaviorParameters>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.TryGetComponent<TankController>(out TankController tank))
-        {
-            SetReward(1);
-            EndEpisode();
-        }
-        else
-        {
-            SetReward(-1);
-            EndEpisode();
-        }
-        /*Debug.Log(collision.gameObject.tag);
-        
-        if (collision.gameObject.tag == "tank")
-        {
-            SetReward(1);
-            EndEpisode();
-        }
-        if (collision.gameObject.tag == "obstacle")
-        {
-            SetReward(-1);
-            EndEpisode();
-        }*/ 
+        SetReward(-1);
+        EndEpisode();
     }
 
-    public override void CollectObservations(VectorSensor sensor)
+
+    public void Shoot()
     {
-        sensor.AddObservation(transform.localPosition);
-        /*sensor.AddObservation(tank.model.rotation.eulerAngles);
-        sensor.AddObservation(tank.cannonAttachment.rotation.eulerAngles);*/
+        foreach (Transform shootPoint in tank.shootPoints)
+        {
+            // fx
+            var fx = Instantiate(tank.shootFx, shootPoint);
+            fx.transform.rotation = shootPoint.rotation;
+
+            // bullet
+            var bullet = Instantiate(tank.bulletPrefab, shootPoint.position, shootPoint.rotation);
+            bullet.owner = tank;
+            bullet.OnHitTarget = OnHitTarget;
+        }
+    }
+
+    void OnHitTarget()
+    {
+        AddReward(0.1f);
     }
 
     public override void OnEpisodeBegin()
@@ -65,18 +66,63 @@ public class EnemyAgent : Agent
         tank.cannonAttachment.rotation = Quaternion.identity;
     }
 
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        float nearestTargetDistance = GetNearestTargetDistance();
+        sensor.AddObservation(nearestTargetDistance);
+    }
+
     public override void OnActionReceived(ActionBuffers actions)
     {
-        var actionX = 2f * Mathf.Clamp(actions.ContinuousActions[0], -1f, 1f);
-        var actionY = 2f * Mathf.Clamp(actions.ContinuousActions[1], -1f, 1f);
+        var moveDirX = 2f * Mathf.Clamp(actions.ContinuousActions[0], -1f, 1f);
+        var moveDirY = 2f * Mathf.Clamp(actions.ContinuousActions[1], -1f, 1f);
+        tank.Move(new Vector3(moveDirX, moveDirY, transform.position.z));
 
-        if (transform.localPosition.x < -18 || transform.localPosition.x > 18 || transform.localPosition.y < -10 || transform.localPosition.y > 10)
+        if (transform.localPosition.x < -18 || transform.localPosition.x > 18 || transform.localPosition.y < -16 || transform.localPosition.y > 11)
         {
             SetReward(-1);
             EndEpisode();
         }
-        /*Debug.Log(actionY);
-        Debug.Log(actionX);*/
-        tank.Move(new Vector3(actionX, actionY, transform.position.z));
+
+        Transform nearestTarget = GetNearestTarget();
+        if (nearestTarget != null && Vector3.Distance(transform.position, nearestTarget.position) <= tank.Info.attackRange)
+        {
+            var rotateX = 2f * Mathf.Clamp(actions.ContinuousActions[2], -1f, 1f);
+            var roateY = 2f * Mathf.Clamp(actions.ContinuousActions[3], -1f, 1f);
+
+            tank.RotateGun(new Vector3(rotateX, roateY));
+
+            if (canShoot)
+            {
+                canShoot = false;
+                Shoot();
+                LeanTween.delayedCall(1000f / tank.Info.aspd, () => { canShoot = true; });
+            }
+        }
+
+    }
+
+    private float GetNearestTargetDistance()
+    {
+        Transform nearestTarget = GetNearestTarget();
+        return nearestTarget != null ? Vector3.Distance(transform.position, nearestTarget.position) : 0f;
+    }
+
+    private Transform GetNearestTarget()
+    {
+        Transform nearestTarget = null;
+        float minDistance = float.MaxValue;
+
+        foreach (Transform target in targets)
+        {
+            float distance = Vector3.Distance(transform.position, target.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestTarget = target;
+            }
+        }
+
+        return nearestTarget;
     }
 }
