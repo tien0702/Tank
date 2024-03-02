@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "bulletName": "B1",
+      "modelName": "T1",
+      "cannonName": "C1",
+      "damage": 50,
+      "hp": 500,
+      "speed": 2
+    },
+    {
+      "bulletName": "B1",
+      "modelName": "T1",
+      "cannonName": "C2",
+      "damage": 100,
+      "hp": 700,
+      "speed": 2
+    }
+  ]
+}
