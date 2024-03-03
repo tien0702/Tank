@@ -33,10 +33,9 @@ public class BulletController : MonoBehaviour
         if (hit.transform != null)
         {
             IHit[] iHits = hit.transform.GetComponentsInChildren<IHit>();
-            Debug.Log(hit.transform.gameObject.name);
             foreach (IHit ihit in iHits)
             {
-                if (ihit != null)
+                if (ihit != null && ihit != owner as IHit)
                 {
                     ihit.OnHit(owner.Info.damage);
                     OnHitTarget?.Invoke();

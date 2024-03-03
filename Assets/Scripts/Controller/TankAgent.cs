@@ -5,10 +5,12 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyAgent : Agent, IHit
+public class TankAgent : Agent, IHit
 {
+    public GameObject rayPrefab;
     List<Transform> targets;
     List<Transform> obstacles;
 
@@ -20,18 +22,23 @@ public class EnemyAgent : Agent, IHit
     {
         base.Awake();
         tank = GetComponent<TankController>();
+
+        rayPrefab = Resources.Load<GameObject>("Prefabs/Ray");
     }
 
     private void Start()
     {
         targets = GameObject.FindObjectsOfType<TankController>().ToList().Select(x => x.GetComponent<Transform>()).ToList();
         targets.Remove(gameObject.transform);
-        obstacles = transform.parent.Find("Obstacles").GetComponentsInChildren<Transform>().ToList();
-        obstacles.Remove(transform.parent.Find("Obstacles"));
+        var obs = GameObject.FindGameObjectsWithTag("obstacle");
+        obstacles = new List<Transform>(obs.Length);
+        foreach (var g in obs) obstacles.Add(g.transform);
 
         tank.hpController.onDie.Add(OnDie);
 
         BehaviorParameters behaviors = GetComponent<BehaviorParameters>();
+
+        GameObject.Instantiate(rayPrefab, tank.model);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +48,7 @@ public class EnemyAgent : Agent, IHit
             collision.gameObject.layer.Equals(LayerMask.NameToLayer("tank")))
         {
             Debug.Log(collision.gameObject.layer);
-            SetReward(-1);
+            AddReward(-1);
             EndEpisode();
         }
     }
@@ -90,7 +97,7 @@ public class EnemyAgent : Agent, IHit
     void OnDie()
     {
         Debug.Log("ondie");
-        SetReward(-1);
+        AddReward(-1);
         EndEpisode();
     }
 

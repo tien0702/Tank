@@ -39,8 +39,14 @@ public class CountdownTimer : MonoBehaviourPunCallbacks
         if (currentTime <= 0f)
         {
             CancelInvoke("DecreaseTime");
-            if (PhotonNetwork.IsMasterClient)
-                PhotonNetwork.LoadLevel("GameScene");
+
+            photonView.RPC("LoadGameScene", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    private void LoadGameScene()
+    {
+        PhotonNetwork.LoadLevel("GameScene");
     }
 }

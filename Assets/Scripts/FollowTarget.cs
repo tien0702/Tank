@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class FollowTarget : MonoBehaviour
 {
-    Transform target;
-    private void Awake()
-    {
-        PlayerController player = GameObject.FindAnyObjectByType<PlayerController>();
-        target = player.transform;
-    }
+    public Transform target;
 
     private void Update()
     {
-        transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        if(target != null) transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
     }
 }

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - wall
+  - Bullet
+  - tank
+  - obstacle
   layers:
   - Default
   - TransparentFX

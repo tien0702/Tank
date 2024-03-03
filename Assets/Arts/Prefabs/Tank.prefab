@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 717420706078329684}
   - component: {fileID: 717420706078329685}
   - component: {fileID: 717420706078329690}
-  - component: {fileID: -4580107698306606582}
+  - component: {fileID: -5980199887417956264}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 500
+  rayPrefab: {fileID: 0}
 --- !u!114 &717420706078329690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
---- !u!114 &-4580107698306606582
+--- !u!114 &-5980199887417956264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -48,7 +48,7 @@ public abstract class TankController : MoveController, IHit
         cannonAttachment.up = direction;
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         foreach(Transform shootPoint in shootPoints)
         {
@@ -78,5 +78,4 @@ public abstract class TankController : MoveController, IHit
     }
 
     protected abstract TankInfo GetTankInfo(int level);
-
 }

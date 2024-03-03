@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 688052170302164511}
   m_Layer: 13
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13680,7 +13680,7 @@ GameObject:
   - component: {fileID: 8776418966339204411}
   m_Layer: 9
   m_Name: rock-1 (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13781,7 +13781,7 @@ GameObject:
   - component: {fileID: 8776418966161541920}
   m_Layer: 9
   m_Name: rock-1 (4)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13882,7 +13882,7 @@ GameObject:
   - component: {fileID: 8776418966104323031}
   m_Layer: 9
   m_Name: rock-1 (6)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13983,7 +13983,7 @@ GameObject:
   - component: {fileID: 8776418965214154642}
   m_Layer: 9
   m_Name: rock-1 (5)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14084,7 +14084,7 @@ GameObject:
   - component: {fileID: 8776418965214941654}
   m_Layer: 9
   m_Name: rock-1 (2)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14185,7 +14185,7 @@ GameObject:
   - component: {fileID: 8776418965089251664}
   m_Layer: 9
   m_Name: rock-1
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14286,7 +14286,7 @@ GameObject:
   - component: {fileID: 8776418965061739790}
   m_Layer: 9
   m_Name: rock-1 (3)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14387,7 +14387,7 @@ GameObject:
   - component: {fileID: 6518552675305368330}
   m_Layer: 9
   m_Name: oil-1 (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14488,7 +14488,7 @@ GameObject:
   - component: {fileID: 6518552676976568468}
   m_Layer: 9
   m_Name: oil-1 (2)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14589,7 +14589,7 @@ GameObject:
   - component: {fileID: 6518552676994848265}
   m_Layer: 9
   m_Name: oil-1
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14690,7 +14690,7 @@ GameObject:
   - component: {fileID: 4738353284541611040}
   m_Layer: 9
   m_Name: house-2 (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14801,7 +14801,7 @@ GameObject:
   - component: {fileID: 4738353285918989590}
   m_Layer: 9
   m_Name: house-2
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14912,7 +14912,7 @@ GameObject:
   - component: {fileID: 1706418748215708653}
   m_Layer: 9
   m_Name: house-1
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15023,7 +15023,7 @@ GameObject:
   - component: {fileID: 1706418747440019067}
   m_Layer: 9
   m_Name: house-1 (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15130,7 +15130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15138,11 +15138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.423
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.026
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15192,7 +15192,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (7)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15254,7 +15254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (6)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15316,7 +15316,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (4)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15378,7 +15378,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (3)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15440,7 +15440,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (9)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15502,7 +15502,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (5)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15564,7 +15564,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15626,7 +15626,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (8)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
@@ -15688,7 +15688,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 717420706078329688, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_Name
-      value: Enemy (2)
+      value: Tank
       objectReference: {fileID: 0}
     - target: {fileID: 717420706078329691, guid: 63ef74f6520fc4a40bf6cef98f559357, type: 3}
       propertyPath: m_RootOrder
