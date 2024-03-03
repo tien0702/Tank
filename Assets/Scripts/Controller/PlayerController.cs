@@ -18,7 +18,7 @@ public class PlayerController : TankController
         var lvCtrl = Resources.Load<GameObject>("Prefabs/LvController").GetComponentInChildren<LevelController>();
         hpController = Instantiate<HPController>(hpCtrl, transform);
         levelController = Instantiate<LevelController>(lvCtrl, transform);
-        hpController.onDie = OnDie;
+        hpController.onDie.Add(OnDie);
         levelController.onLevelUp = OnLevelUp;
         filterTarget = GetComponent<FilterTargetController>();
     }

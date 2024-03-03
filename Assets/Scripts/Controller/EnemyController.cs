@@ -14,15 +14,15 @@ public class EnemyController : TankController
         var lvCtrl = Resources.Load<GameObject>("Prefabs/LvController").GetComponentInChildren<LevelController>();
         hpController = Instantiate<HPController>(hpCtrl, transform);
         levelController = Instantiate<LevelController>(lvCtrl, transform);
-        hpController.onDie = OnDie;
+        hpController.onDie.Add(OnDie);
         levelController.onLevelUp = OnLevelUp;
+        levelController.Level = 1;
+        levelController.maxValue = 60;
+        levelController.CurrentValue = 0;
     }
 
     private void Start()
     {
-        levelController.Level = 1;
-        levelController.maxValue = 60;
-        levelController.CurrentValue = 0;
     }
 
     protected override void OnLevelUp(int level)
@@ -54,7 +54,7 @@ public class EnemyController : TankController
         var explosionFxPrefab = Resources.Load<Animator>("Prefabs/FXs/ExplosionFX");
         var fx = Instantiate(explosionFxPrefab, transform.position, transform.rotation);
         fx.Play("explosion-2");
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     protected override TankInfo GetTankInfo(int level)

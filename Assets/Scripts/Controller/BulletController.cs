@@ -32,17 +32,18 @@ public class BulletController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 0.2f);
         if (hit.transform != null)
         {
-            IHit iHit = hit.transform.parent.GetComponent<IHit>();
-            if (iHit != null)
+            IHit[] iHits = hit.transform.GetComponentsInChildren<IHit>();
+            Debug.Log(hit.transform.gameObject.name);
+            foreach (IHit ihit in iHits)
             {
-                iHit.OnHit(owner.Info.damage);
-                OnHitTarget?.Invoke();
-                this.MoveToPool();
-                return;
+                if (ihit != null)
+                {
+                    ihit.OnHit(owner.Info.damage);
+                    OnHitTarget?.Invoke();
+                    this.MoveToPool();
+                }
             }
-
         }
-        //Move(transform.up);
     }
 
     void MoveToPool()

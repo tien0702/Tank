@@ -14,7 +14,7 @@ public class HPController : ProcessingController
         }
     }
 
-    public Action onDie;
+    public List<Action> onDie = new List<Action>();
 
 
     public void TakeDamage(float damage)
@@ -28,7 +28,10 @@ public class HPController : ProcessingController
         {
             if (onDie != null)
             {
-                onDie();
+                foreach (var action in onDie)
+                {
+                    action();
+                }
             }
         }
     }
