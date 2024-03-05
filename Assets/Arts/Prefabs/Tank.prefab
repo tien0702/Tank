@@ -91,18 +91,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 8
+    VectorObservationSize: 9
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 2
+      m_NumContinuousActions: 4
       BranchSizes: 
-    VectorActionSize: 02000000
+    VectorActionSize: 04000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: ce393392bc63c6f4e87aa88b4060f8e2, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 1
-  m_BehaviorType: 2
+  m_BehaviorType: 0
   m_BehaviorName: Tank
   TeamId: 0
   m_UseChildSensors: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 500
-  rayPrefab: {fileID: 0}
+  rayPrefab: {fileID: 7235902436708135805, guid: 76f7ff16b0db12b4bb0f6b779f6a3c84, type: 3}
 --- !u!114 &717420706078329690
 MonoBehaviour:
   m_ObjectHideFlags: 0

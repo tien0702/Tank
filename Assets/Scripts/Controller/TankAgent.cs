@@ -28,7 +28,7 @@ public class TankAgent : Agent, IHit
 
     private void Start()
     {
-        targets = GameObject.FindObjectsOfType<TankController>().ToList().Select(x => x.GetComponent<Transform>()).ToList();
+        targets = transform.parent.GetComponentsInChildren<TankController>().ToList().Select(x => x.GetComponent<Transform>()).ToList();
         targets.Remove(gameObject.transform);
         var obs = GameObject.FindGameObjectsWithTag("obstacle");
         obstacles = new List<Transform>(obs.Length);
@@ -64,8 +64,16 @@ public class TankAgent : Agent, IHit
     public override void CollectObservations(VectorSensor sensor)
     {
         Transform target = GetNearestTarget();
-        if (target != null) sensor.AddObservation(target.transform.position);
-        else sensor.AddObservation(Vector3.zero);
+        if (target != null)
+        {
+            sensor.AddObservation(target.transform.position);
+            sensor.AddObservation(target.GetComponent<TankController>().hpController.CurrentValue);
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero);
+            sensor.AddObservation(-1f);
+        }
 
         float nearestTargetDistance = target != null ? Vector3.Distance(transform.position, target.position) : 0f;
         sensor.AddObservation(nearestTargetDistance);
@@ -75,6 +83,7 @@ public class TankAgent : Agent, IHit
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        Debug.Log(actions.ContinuousActions[0]);
         var moveDirX = actions.ContinuousActions[0];
         var moveDirY = actions.ContinuousActions[1];
         tank.Move(new Vector3(moveDirX, moveDirY, transform.position.z));
@@ -82,7 +91,10 @@ public class TankAgent : Agent, IHit
         Transform nearestTarget = GetNearestTarget();
         if (nearestTarget != null && Vector3.Distance(transform.position, nearestTarget.position) <= tank.Info.attackRange)
         {
-            Vector3 cannonDir = transform.position - nearestTarget.position;
+            var rotateY = actions.ContinuousActions[2];
+            var rotateX = actions.ContinuousActions[3];
+            Vector3 cannonDir = new Vector3(rotateX, rotateY);
+
             tank.RotateGun(cannonDir);
 
             if (canShoot)
@@ -129,6 +141,7 @@ public class TankAgent : Agent, IHit
 
         foreach (Transform target in targets)
         {
+            if (target == null) continue;
             float distance = Vector3.Distance(transform.position, target.position);
             if (distance < minDistance)
             {

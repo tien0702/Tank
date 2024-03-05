@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        Vector3 position = new Vector3();
+        /*Vector3 position = new Vector3();
         position.x = UnityEngine.Random.Range(-10f, 10f);
         position.y = UnityEngine.Random.Range(-10f, 10f);
 
@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
                 var bot = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "BotOnline"), pos, Quaternion.identity);
                 bot.GetComponentInChildren<TextMesh>().text = string.Format("[Bot: {0}]", i + 1);
             }
-        }
+        }*/
     }
 
     TankController[] GetBots(int count)
